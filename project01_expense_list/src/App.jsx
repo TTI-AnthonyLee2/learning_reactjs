@@ -33,7 +33,7 @@ function App() {
 
   const addExpense = expense => {
     setExpenses(prevValue => {
-      return [...prevValue, expense];
+      return [expense, ...prevValue];
     })
   }
 

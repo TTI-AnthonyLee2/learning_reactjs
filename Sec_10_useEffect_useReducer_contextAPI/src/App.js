@@ -12,14 +12,14 @@ function App() {
   };
   
   useEffect(() => {
-    console.log("useEffect executing!");
+    // console.log("useEffect executing!");
     
     const storedLoginStatus = JSON.parse(localStorage.getItem("loginStatus"));
 
     if (storedLoginStatus === STATUS.LOGIN) {
       setIsLoggedIn(true);
     }
-  }, [isLoggedIn]);
+  }, []); // only execute once after component mounted at the first time
 
   const loginHandler = (email, password) => {
     // We should of course check email and password

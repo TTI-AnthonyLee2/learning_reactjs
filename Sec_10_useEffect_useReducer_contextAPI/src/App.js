@@ -4,12 +4,13 @@ import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import MainHeader from './components/MainHeader/MainHeader';
 
+const STATUS = {
+  LOGIN: 1,
+  LOGOUT: 0
+};
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const STATUS = {
-    LOGIN: 1,
-    LOGOUT: 0
-  };
   
   useEffect(() => {
     // console.log("useEffect executing!");

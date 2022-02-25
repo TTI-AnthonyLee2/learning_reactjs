@@ -4,16 +4,33 @@ const ACTIONS = {
     INCREMENT: "increment",
     DECREMENT: "decrement",
     INCREASE: "increase",
+    TOGGLE: "toggle",
 };
 
-const reducer = (state = {counter: 0}, action) => {
+const initialState = {counter: 0, displayed: true};
+
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTIONS.INCREMENT:
-            return {counter: state.counter + 1};
+            return {
+                ...state,
+                counter: state.counter + 1,
+            };
         case ACTIONS.INCREASE:
-            return {counter: state.counter + action.payload.value};
+            return {
+                ...state,
+                counter: state.counter + action.payload.value,
+            };
         case ACTIONS.DECREMENT:
-            return {counter: state.counter - 1};
+            return {
+                ...state,
+                counter: state.counter - 1,
+            };
+        case ACTIONS.TOGGLE:
+            return {
+                ...state,
+                displayed: !state.displayed,
+            };
         default:
             return state;
     }

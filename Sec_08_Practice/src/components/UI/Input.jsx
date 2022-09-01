@@ -1,4 +1,4 @@
-export const Input = ({type, title, id}) => {
+const Input = ({type, title, id}) => {
     return (
         <>
             <label htmlFor={id}>{title}</label>
@@ -8,3 +8,5 @@ export const Input = ({type, title, id}) => {
         </>
     );
 }
+
+export default Input;

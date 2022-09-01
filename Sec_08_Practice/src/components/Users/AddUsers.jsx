@@ -1,7 +1,7 @@
-import { Input } from "../UI/Input";
-import { Button } from "../UI/Button";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
-export const AddUsers = () => {
+const AddUsers = () => {
     return (
         <>
             <Input 
@@ -18,3 +18,5 @@ export const AddUsers = () => {
         </>
     );
 }
+
+export default AddUsers;

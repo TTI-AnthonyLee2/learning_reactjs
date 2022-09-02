@@ -7,7 +7,7 @@ import Container from "../UI/Container";
 import styles from "./AddUsers.module.css";
 
 const defaultUser = {name: '', age: ''};
-const AddUsers = ({ onAddUser }) => {
+const AddUsers = ({ onAddUser, showErrorMessage }) => {
   const [user, setUser] = useState(defaultUser);
 
   const handleNameChanged = e => {
@@ -30,9 +30,27 @@ const AddUsers = ({ onAddUser }) => {
   
   const handleAddUsersSubmitted = e => {
     e.preventDefault();
+    
+    const isInvalidInput = user.name.trim().length === 0 || user.age.trim().length === 0;
+    const isInvalidAge = Number(user.age) <= 0;
+    
+    if (isInvalidInput) {
+      showErrorMessage({
+        title: 'Invalid input',
+        message: 'Please check if your username or age is empty.'
+      });
+      return;
+    }
+
+    if (isInvalidAge) {
+      showErrorMessage({
+        title: 'Invalid age',
+        message: 'Please check if the age is (> 0).'
+      });
+      return;
+    }
 
     onAddUser(user);
-    
     setUser(defaultUser);
   };
 

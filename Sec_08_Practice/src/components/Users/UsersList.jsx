@@ -8,7 +8,7 @@ const UsersList = ({ users }) => {
           <ul>
             {
               users.length > 0 ? 
-              users.map((user, index) => <li key={index}>{user.name} ({user.age} years old)</li>) : 
+              users.map(user => <li key={user.id}>{user.name} ({user.age} years old)</li>) : 
               `Let's add some users!`
             }
           </ul>

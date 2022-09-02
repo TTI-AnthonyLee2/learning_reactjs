@@ -7,7 +7,7 @@ import Container from "../UI/Container";
 import styles from "./AddUsers.module.css";
 
 const defaultUser = {name: '', age: ''};
-const AddUsers = () => {
+const AddUsers = ({ onAddUser }) => {
   const [user, setUser] = useState(defaultUser);
 
   const handleNameChanged = e => {
@@ -30,6 +30,9 @@ const AddUsers = () => {
   
   const handleAddUsersSubmitted = e => {
     e.preventDefault();
+
+    onAddUser(user);
+    
     setUser(defaultUser);
   };
 

@@ -1,4 +1,4 @@
-const UserList = () => {
+const UsersList = () => {
     return (
         <>
             
@@ -6,4 +6,4 @@ const UserList = () => {
     );
 }
 
-export default UserList;
+export default UsersList;

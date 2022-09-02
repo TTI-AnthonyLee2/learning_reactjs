@@ -1,12 +1,12 @@
 import React from 'react';
 import AddUsers from './components/Users/AddUsers';
-import UserList from './components/Users/UserList';
+import UsersList from './components/Users/UsersList';
 
 function App() {
   return (
     <div>
         <AddUsers />
-        <UserList />
+        <UsersList />
     </div>
   );
 }

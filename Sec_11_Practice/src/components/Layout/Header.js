@@ -1,5 +1,6 @@
-import { StyledHeader, StyledMainImg, StyledHeaderCartBtn } from '../../styles/Header.styled';
 import CartIcon from '../Cart/CartIcon';
+
+import { StyledHeader, StyledMainImg, StyledHeaderCartBtn } from '../../styles/Header.styled';
 
 import mealImg from '../../assets/meals.jpg';
 

@@ -18,7 +18,7 @@ export const StyledHeaderCartBtn = styled.button`
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: #4d1601;
+  background-color: ${({ theme }) => theme.colors.header.cart};
   color: white;
   padding: 0.75rem 3rem;
   display: flex;
@@ -34,7 +34,7 @@ export const StyledHeaderCartBtn = styled.button`
   }
 
   span:last-of-type {
-    background-color: #b94517;
+    background-color: ${({ theme }) => theme.colors.header.badge};
     padding: 0.25rem 1rem;
     border-radius: 25px;
     margin-left: 1rem;
@@ -57,7 +57,7 @@ export const StyledHeader = styled.header`
   left: 0;
   width: 100%;
   height: 5rem;
-  background-color: #8a2b06;
+  background-color: ${({ theme }) => theme.colors.header.basic};
   color: white;
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,18 @@
+import { useRef, forwardRef, useImperativeHandle } from 'react';
+
 import styles from './Input.module.css';
 
-const Input = ({ label, id, type, value, isValid, onChange, onBlur }) => {
+const Input = forwardRef(({ label, id, type, value, isValid, onChange, onBlur }, ref) => {
+  const inputRef = useRef();
+
+  useImperativeHandle(ref, () => ({
+    focus: focus
+  }));
+
+  const focus = () => {
+    inputRef.current.focus();
+  }
+  
   return (
     <div
       className={`${styles.control} ${
@@ -9,6 +21,7 @@ const Input = ({ label, id, type, value, isValid, onChange, onBlur }) => {
     >
       <label htmlFor={id}>{label}</label>
       <input
+        ref={inputRef}
         type={type}
         id={id}
         value={value}
@@ -17,6 +30,6 @@ const Input = ({ label, id, type, value, isValid, onChange, onBlur }) => {
       />
     </div>
   );
-}
+});
 
 export default Input;

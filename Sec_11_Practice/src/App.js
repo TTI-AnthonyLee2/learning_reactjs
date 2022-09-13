@@ -1,9 +1,10 @@
-import Header from './components/Layout/Header';
-
 import { Helmet } from 'react-helmet';
 import GlobalStyles from './styles/Global';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+
+import Header from './components/Layout/Header';
+import Meals from './components/Meals/Meals';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
       </Helmet>
       <GlobalStyles />
       <Header />
+      <main>
+        <Meals />
+      </main>
     </ThemeProvider>
   );
 }

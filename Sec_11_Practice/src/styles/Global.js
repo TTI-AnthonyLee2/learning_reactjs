@@ -13,6 +13,18 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     background-color: ${({ theme }) => theme.colors.body.basic}
   }
+
+  @keyframes meals-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export default GlobalStyles;

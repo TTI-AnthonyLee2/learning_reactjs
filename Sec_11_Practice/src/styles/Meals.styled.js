@@ -42,4 +42,17 @@ export const StyledMealItem = styled.li`
   h3 {
     margin: 0 0 0.25rem 0;
   }
+
+  div:first-of-type {
+    div:first-of-type {
+      font-style: italic;
+    }
+    
+    div:last-of-type {
+      margin-top: 0.25rem;
+      font-weight: bold;
+      color: #ad5502;
+      font-size: 1.25rem;
+    }
+  }
 `;

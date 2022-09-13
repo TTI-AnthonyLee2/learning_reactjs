@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    background-color: #3f3f3f;
+    background-color: ${({ theme }) => theme.colors.body.basic}
   }
 `;
 

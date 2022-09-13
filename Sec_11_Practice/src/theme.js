@@ -5,6 +5,9 @@ const theme = {
       cart: '#4d1601',
       badge: '#b94517'
     },
+    body: {
+      basic: '#3f3f3f',
+    }
   }
 }
 

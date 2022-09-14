@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import ModalContext from '../../store/ModalContext';
 import { StyledCartActions, StyledCartItems, StyledCartTotal } from '../../styles/Cart.styled';
 import Modal from '../UI/Modal';
 
@@ -6,20 +8,26 @@ const Cart = () => {
     <li>{item.name}</li>
   ));
 
+  const modalCtx = useContext(ModalContext);
+
   return (
-    <Modal>
-      <StyledCartItems>
-        {cartItems}
-      </StyledCartItems>
-      <StyledCartTotal>
-        <span>Total Amount</span>
-        <span>100</span>
-      </StyledCartTotal>
-      <StyledCartActions>
-        <button>Close</button>
-        <button>Order</button>
-      </StyledCartActions>
-    </Modal>
+    <>
+      {
+        modalCtx.shouldShowModal && <Modal>
+          <StyledCartItems>
+            {cartItems}
+          </StyledCartItems>
+          <StyledCartTotal>
+            <span>Total Amount</span>
+            <span>100</span>
+          </StyledCartTotal>
+          <StyledCartActions>
+            <button onClick={modalCtx.hideModal} >Close</button>
+            <button>Order</button>
+          </StyledCartActions>
+        </Modal>
+      }
+    </>
   );
 }
 

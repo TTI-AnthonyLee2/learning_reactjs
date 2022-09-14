@@ -6,6 +6,7 @@ import theme from './theme';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import Cart from './components/Cart/Cart';
+import { ModalContextProvider } from './store/ModalContext';
 
 
 function App() {
@@ -17,11 +18,13 @@ function App() {
         </style>
       </Helmet>
       <GlobalStyles />
-      <Cart />
-      <Header />
-      <main>
-        <Meals />
-      </main>
+      <ModalContextProvider>
+        <Cart />
+        <Header />
+        <main>
+          <Meals />
+        </main>
+      </ModalContextProvider>
     </ThemeProvider>
   );
 }

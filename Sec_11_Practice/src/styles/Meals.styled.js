@@ -56,3 +56,24 @@ export const StyledMealItem = styled.li`
     }
   }
 `;
+
+export const StyledMealItemForm = styled.form`
+  text-align: right;
+  
+  button {
+    font: inherit;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.colors.header.basic};
+    border: 1px solid ${({ theme }) => theme.colors.header.basic};
+    color: white;
+    padding: 0.25rem 2rem;
+    border-radius: 20px;
+    font-weight: bold;
+
+    &:hover,
+    &:active {
+      background-color: #641e03;
+      border-color: #641e03;
+    }
+  }
+`;

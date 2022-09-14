@@ -11,7 +11,10 @@ export const StyledCartActions = styled.div`
     padding: 0.5rem 2rem;
     border-radius: 25px;
     margin-left: 1rem;
-    
+  }
+
+  button:nth-of-type(1) {
+    color: #8a2b06;
     &:hover,
     &:active {
       background-color: #5a1a01;
@@ -20,13 +23,15 @@ export const StyledCartActions = styled.div`
     }
   }
 
-  button:nth-of-type(1) {
-    color: #8a2b06;
-  }
-
   button:nth-of-type(2) {
     background-color: #8a2b06;
     color: white;
+    &:hover,
+    &:active {
+      background-color: #5a1a01;
+      border-color: #5a1a01;
+      color: white;
+    }
   }
 `;
 

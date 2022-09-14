@@ -1,4 +1,5 @@
 import { StyledCartActions, StyledCartItems, StyledCartTotal } from '../../styles/Cart.styled';
+import Modal from '../UI/Modal';
 
 const Cart = () => {
   const cartItems = [{id: 'c1', name: 'Sushi', amount: 2, price: 12.99}].map(item => (
@@ -6,7 +7,7 @@ const Cart = () => {
   ));
 
   return (
-    <div>
+    <Modal>
       <StyledCartItems>
         {cartItems}
       </StyledCartItems>
@@ -18,7 +19,7 @@ const Cart = () => {
         <button>Close</button>
         <button>Order</button>
       </StyledCartActions>
-    </div>
+    </Modal>
   );
 }
 

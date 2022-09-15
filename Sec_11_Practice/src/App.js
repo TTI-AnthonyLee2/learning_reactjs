@@ -7,6 +7,7 @@ import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import Cart from './components/Cart/Cart';
 import { ModalContextProvider } from './store/ModalContext';
+import { CartContextProvider } from './store/CartContext';
 
 
 function App() {
@@ -19,11 +20,13 @@ function App() {
       </Helmet>
       <GlobalStyles />
       <ModalContextProvider>
-        <Cart />
-        <Header />
-        <main>
-          <Meals />
-        </main>
+        <CartContextProvider>
+          <Cart />
+          <Header />
+          <main>
+            <Meals />
+          </main>
+        </CartContextProvider>
       </ModalContextProvider>
     </ThemeProvider>
   );

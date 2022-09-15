@@ -1,14 +1,30 @@
 import { useContext } from 'react';
+
+import CartContext from '../../store/CartContext';
 import ModalContext from '../../store/ModalContext';
-import { StyledCartActions, StyledCartItems, StyledCartTotal } from '../../styles/Cart.styled';
+
+import { StyledCartActions, StyledCartItem, StyledCartItems, StyledCartTotal } from '../../styles/Cart.styled';
+
 import Modal from '../UI/Modal';
 
 const Cart = () => {
-  const cartItems = [{id: 'c1', name: 'Sushi', amount: 2, price: 12.99}].map(item => (
-    <li>{item.name}</li>
-  ));
-
   const modalCtx = useContext(ModalContext);
+  const cartCtx = useContext(CartContext);
+
+  const mealsList = cartCtx.mealsList;
+  
+  // [{id: 'c1', name: 'Sushi', amount: 2, price: 12.99}]
+  const cartItems = mealsList.map(item => (
+    <StyledCartItem key={item.id}>
+      <h2>{item.name}</h2>
+      <div>{`$${item.price.toFixed(2)}`}</div>
+      <div>{`x ${item.amount}`}</div>
+      <div>
+        <button>-</button>
+        <button>+</button>
+      </div>
+    </StyledCartItem>
+  ));
 
   return (
     <>
@@ -19,7 +35,7 @@ const Cart = () => {
           </StyledCartItems>
           <StyledCartTotal>
             <span>Total Amount</span>
-            <span>100</span>
+            <span>{`$${cartCtx.totalPrice.toFixed(2)}`}</span>
           </StyledCartTotal>
           <StyledCartActions>
             <button onClick={modalCtx.hideModal} >Close</button>

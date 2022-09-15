@@ -7,10 +7,14 @@ import { StyledHeader, StyledMainImg, StyledHeaderCartBtn } from '../../styles/H
 import mealImg from '../../assets/meals.jpg';
 
 import ModalContext from '../../store/ModalContext';
+import CartContext from '../../store/CartContext';
 
 const Header = () => {
   const modalCtx = useContext(ModalContext);
+  const cartCtx = useContext(CartContext);
   
+  const numOfCartMeals = cartCtx.mealsList.reduce((acc, meal) => acc + meal.amount, 0);
+
   return (
     <>
       <StyledHeader>
@@ -18,7 +22,7 @@ const Header = () => {
         <StyledHeaderCartBtn onClick={modalCtx.showModal}>
           <span><CartIcon /></span>
           <span>Your Cart</span>
-          <span>5</span>
+          <span>{numOfCartMeals}</span>
         </StyledHeaderCartBtn>
       </StyledHeader>
       <StyledMainImg>

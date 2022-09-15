@@ -1,35 +1,19 @@
-import { StyledAvailableMeals, StyledMealItem, StyledMealItemForm } from '../../styles/Meals.styled';
+import { StyledAvailableMeals } from '../../styles/Meals.styled';
 
+import MealItem from './MealItem';
 import Card from '../UI/Card';
-import Input from '../UI/Input';
 
 import DUMMY_MEALS from '../../dummy-meals';
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map(({id, name, description, price}) => (
-    <StyledMealItem key={id}>
-      <div>
-        <h3>{name}</h3>
-        <div>{description}</div>
-        <div>{`$ ${price.toFixed(2)}`}</div>
-      </div>
-      <div>
-        <StyledMealItemForm>
-          <Input 
-            label='Amount'
-            input={{
-              id: `amount-${id}`,
-              type: 'number',
-              min: '1',
-              max: '5',
-              step: '1',
-              defaultValue: '1'
-            }}
-          />
-          <button>+ Add</button>
-        </StyledMealItemForm>
-      </div>
-    </StyledMealItem>
+  const mealsList = DUMMY_MEALS.map(meal => (
+    <MealItem 
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
   ));
 
   return (

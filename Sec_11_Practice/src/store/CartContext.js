@@ -21,7 +21,15 @@ const reducer = (state, action) => {
 
   switch(action.type) {
     case CART_ACTIONS.ADD: {
-      const newList = [...state.mealsList, action.payload];
+      const existingMealIndex = state.mealsList.findIndex(meal => meal.id === action.payload.id);
+      let newList = [...state.mealsList];
+
+      if (existingMealIndex >= 0) {
+        newList[existingMealIndex].amount += action.payload.amount;
+      } else {
+        newList = [...newList, action.payload];
+      }
+
       const newTotalPrice = state.totalPrice + action.payload.amount * action.payload.price;
 
       return { 
@@ -30,8 +38,24 @@ const reducer = (state, action) => {
       };
     }
     case CART_ACTIONS.REMOVE: {
+      const existingMealIndex = state.mealsList.findIndex(meal => meal.id === action.payload);
+      
+      if (existingMealIndex === -1) return new Error('It seems something went wrong...');
+      
+      const existingMeal = state.mealsList[existingMealIndex];
+      const newTotalPrice = state.totalPrice - existingMeal.price;
+      let newList = [...state.mealsList];
 
-      return;
+      if (existingMeal.amount === 1) {
+        newList = newList.filter(meal => meal.id !== action.payload);
+      } else {
+        newList[existingMealIndex].amount -= 1;
+      }
+
+      return {
+        mealsList: newList,
+        totalPrice: newTotalPrice
+      };
     }
     default:
       return state;

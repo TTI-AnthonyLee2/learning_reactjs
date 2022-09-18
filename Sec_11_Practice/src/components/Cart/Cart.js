@@ -12,6 +12,17 @@ const Cart = () => {
   const cartCtx = useContext(CartContext);
 
   const mealsList = cartCtx.mealsList;
+
+  const addMealHandler = (item, e) => {
+    cartCtx.addMeal({
+      ...item,
+      amount: 1
+    })
+  }
+
+  const removeMealHandler = (id, e) => {
+    cartCtx.removeMeal(id);
+  }
   
   // [{id: 'c1', name: 'Sushi', amount: 2, price: 12.99}]
   const cartItems = mealsList.map(item => (
@@ -24,8 +35,8 @@ const Cart = () => {
         </div>
       </div>
       <div>
-        <button>-</button>
-        <button>+</button>
+        <button onClick={removeMealHandler.bind(null, item.id)}>-</button>
+        <button onClick={addMealHandler.bind(null, item)}>+</button>
       </div>
     </StyledCartItem>
   ));

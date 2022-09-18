@@ -76,4 +76,9 @@ export const StyledMealItemForm = styled.form`
       border-color: #641e03;
     }
   }
+
+  p {
+    margin: 0;
+    color: red;
+  }
 `;

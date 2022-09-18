@@ -68,16 +68,34 @@ export const StyledCartItem = styled.li`
   }
 
   div:nth-of-type(1) {
-    font-weight: bold;
-    color: #8a2b06;
+    div {
+      width: 10rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      span:nth-of-type(1) {
+        font-weight: bold;
+        color: #8a2b06;
+      }
+    
+      span:nth-of-type(2) {
+        font-weight: bold;
+        border: 1px solid #ccc;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        color: #363636;
+      }
+    }
   }
 
   div:nth-of-type(2) {
-    font-weight: bold;
-    border: 1px solid #ccc;
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    color: #363636;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 
   button {

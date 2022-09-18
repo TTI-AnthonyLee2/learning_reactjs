@@ -16,9 +16,13 @@ const Cart = () => {
   // [{id: 'c1', name: 'Sushi', amount: 2, price: 12.99}]
   const cartItems = mealsList.map(item => (
     <StyledCartItem key={item.id}>
-      <h2>{item.name}</h2>
-      <div>{`$${item.price.toFixed(2)}`}</div>
-      <div>{`x ${item.amount}`}</div>
+      <div>
+        <h2>{item.name}</h2>
+        <div>
+          <span>{`$${item.price.toFixed(2)}`}</span>
+          <span>{`x ${item.amount}`}</span>
+        </div>
+      </div>
       <div>
         <button>-</button>
         <button>+</button>

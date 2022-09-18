@@ -34,7 +34,7 @@ const reducer = (state, action) => {
 
       return { 
         mealsList: newList,
-        totalPrice: newTotalPrice
+        totalPrice: Math.abs(newTotalPrice)
       };
     }
     case CART_ACTIONS.REMOVE: {
@@ -54,7 +54,7 @@ const reducer = (state, action) => {
 
       return {
         mealsList: newList,
-        totalPrice: newTotalPrice
+        totalPrice: Math.abs(newTotalPrice)
       };
     }
     default:

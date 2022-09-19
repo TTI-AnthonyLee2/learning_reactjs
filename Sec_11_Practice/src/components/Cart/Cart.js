@@ -12,6 +12,7 @@ const Cart = () => {
   const cartCtx = useContext(CartContext);
 
   const mealsList = cartCtx.mealsList;
+  const isCartEmpty = mealsList.length === 0;
 
   const addMealHandler = (item, e) => {
     cartCtx.addMeal({
@@ -54,7 +55,7 @@ const Cart = () => {
           </StyledCartTotal>
           <StyledCartActions>
             <button onClick={modalCtx.hideModal} >Close</button>
-            <button>Order</button>
+            {!isCartEmpty && <button>Order</button>}
           </StyledCartActions>
         </Modal>
       }

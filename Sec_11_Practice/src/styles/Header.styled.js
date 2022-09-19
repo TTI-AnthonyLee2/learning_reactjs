@@ -1,4 +1,22 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const bump = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
 
 export const StyledMainImg = styled.div`
   width: 100%;
@@ -26,6 +44,9 @@ export const StyledHeaderCartBtn = styled.button`
   align-items: center;
   border-radius: 25px;
   font-weight: bold;
+  animation: ${({ isAmountChanged }) => isAmountChanged && css`
+    ${bump} 300ms ease-out;
+  `} ;
 
   span:first-of-type {
     width: 1.35rem;

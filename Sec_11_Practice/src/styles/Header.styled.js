@@ -44,8 +44,9 @@ export const StyledHeaderCartBtn = styled.button`
   align-items: center;
   border-radius: 25px;
   font-weight: bold;
-  animation: ${({ isAmountChanged }) => isAmountChanged && css`
-    ${bump} 300ms ease-out;
+  
+  ${({ isAmountChanged }) => isAmountChanged && css`
+    animation: ${bump} 300ms ease-out;
   `} ;
 
   span:first-of-type {

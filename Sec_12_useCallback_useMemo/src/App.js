@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from './components/UI/Button/Button';
 
 import './App.css';
+import DemoOutput from './components/Demo/DemoOutput';
 
 function App() {
   const [showMsg, setShowMsg] = useState(false);
@@ -17,7 +18,7 @@ function App() {
     <div className="app">
       <h1>Hi there!</h1>
       <Button onClick={clickHandler}>show messages</Button>
-      {showMsg && <p>here is a message!</p>}
+      <DemoOutput showMsg={false} />
     </div>
   );
 }

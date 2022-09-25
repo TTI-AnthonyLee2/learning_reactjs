@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -6,10 +7,10 @@ import './App.css';
 function App() {
   const [moviesList, setMoviesList] = useState([]);
   const fetchMoviesHandler = () => {
-    fetch('https://swapi.dev/api/films')
-      .then(response => response.json())
-      .then(data => {
-        const moviesInfo = data.results.map(movie => ({
+    axios('https://swapi.dev/api/films')
+      .then(res => res.data.results)
+      .then(movies => {
+        const moviesInfo = movies.map(movie => ({
           id: movie.episode_id,
           title: movie.title,
           openingText: movie.opening_crawl,
@@ -18,6 +19,18 @@ function App() {
         
         setMoviesList(moviesInfo);
       });
+    // fetch('https://swapi.dev/api/films')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     const moviesInfo = data.results.map(movie => ({
+    //       id: movie.episode_id,
+    //       title: movie.title,
+    //       openingText: movie.opening_crawl,
+    //       releaseDate: movie.release_date
+    //     }));
+        
+    //     setMoviesList(moviesInfo);
+    //   });
   }
 
   return (

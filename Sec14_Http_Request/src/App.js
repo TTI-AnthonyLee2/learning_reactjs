@@ -8,7 +8,7 @@ function App() {
   const [moviesList, setMoviesList] = useState([]);
   const fetchMoviesHandler = async () => {
     const response = await axios('https://swapi.dev/api/films');
-    const movies = await response.data.results;
+    const movies = response.data.results;
     const moviesInfo = movies.map(movie => ({
       id: movie.episode_id,
       title: movie.title,

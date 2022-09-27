@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 import MoviesList from './components/MoviesList';
@@ -9,12 +9,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchMoviesHandler = async () => {
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await axios('https://swapi.dev/api/film');
+      const response = await axios('https://swapi.dev/api/films');
       const movies = response.data.results;
       const moviesInfo = movies.map(movie => ({
         id: movie.episode_id,
@@ -40,7 +40,12 @@ function App() {
     //     setMoviesList(moviesInfo);
     //   });
     setIsLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+    console.log('seEffect executing...');
+  }, [fetchMoviesHandler]);
 
   console.log('[App] executing...');
 

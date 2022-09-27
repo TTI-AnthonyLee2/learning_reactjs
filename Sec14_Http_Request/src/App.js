@@ -43,6 +43,7 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
+        {!isLoading && moviesList.length === 0 && <p>Found no movies.</p>}
         {!isLoading && <MoviesList movies={moviesList} />}
         {isLoading && <p>Loading...</p>}
       </section>

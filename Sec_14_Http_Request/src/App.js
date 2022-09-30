@@ -2,12 +2,17 @@ import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 import MoviesList from './components/MoviesList';
+import AddMovie from './components/AddMovie';
 import './App.css';
 
 function App() {
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const addMovieHandler = movie => {
+    console.log(movie);
+  }
 
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
@@ -51,6 +56,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>

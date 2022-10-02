@@ -5,13 +5,19 @@ import MoviesList from './components/MoviesList';
 import AddMovie from './components/AddMovie';
 import './App.css';
 
+const url = 'https://react-http-practice-2770a-default-rtdb.firebaseio.com/movies.json';
+
 function App() {
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const addMovieHandler = movie => {
-    console.log(movie);
+  const addMovieHandler = async movie => {
+    const response = await axios.post(url, movie, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
   const fetchMoviesHandler = useCallback(async () => {
@@ -19,14 +25,15 @@ function App() {
     setError(null);
 
     try {
-      const response = await axios('https://swapi.dev/api/films');
-      const movies = response.data.results;
-      const moviesInfo = movies.map(movie => ({
-        id: movie.episode_id,
-        title: movie.title,
-        openingText: movie.opening_crawl,
-        releaseDate: movie.release_date
-      }));
+      const response = await axios(url);
+      const moviesInfo = [];
+
+      for (const key in response.data) {
+        moviesInfo.push({
+          ...response.data[key],
+          id: key
+        });
+      }
   
       setMoviesList(moviesInfo);
     } catch (e) {

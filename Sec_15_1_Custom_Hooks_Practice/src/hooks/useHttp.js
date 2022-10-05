@@ -30,7 +30,7 @@ const useHttp = (configs, applyData) => {
       setError(err.message || 'Something went wrong!');
     }
     setIsLoading(false);
-  }, [applyData, configs.method, configs.headers, configs.url]);
+  }, [applyData, configs]);
 
   return {
     isLoading,

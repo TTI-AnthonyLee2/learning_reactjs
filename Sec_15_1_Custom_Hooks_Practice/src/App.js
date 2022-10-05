@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import useHttp from './hooks/useHttp';
 
 import Tasks from './components/Tasks/Tasks';
@@ -7,15 +7,15 @@ import NewTask from './components/NewTask/NewTask';
 function App() {
   const [tasks, setTasks] = useState([]);
   
-  const configs = {
+  const configs = useMemo(() => ({
     url: 'https://react-http-practice-2770a-default-rtdb.firebaseio.com/tasks.json',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  };
+  }), []);
 
-  const applyData = data => {
+  const applyData = useCallback(data => {
     const loadedTasks = [];
 
     for (const taskKey in data) {
@@ -23,7 +23,7 @@ function App() {
     }
 
     setTasks(loadedTasks);
-  }
+  }, []);
 
   const {isLoading, error, sendRequest: fetchTasks} = useHttp(configs, applyData);
 

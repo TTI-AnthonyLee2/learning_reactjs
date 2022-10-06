@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 
-const useHttp = (configs, applyData) => {
+const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = useCallback(async (taskText) => {
+  const sendRequest = useCallback(async (configs, applyData) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -14,7 +14,7 @@ const useHttp = (configs, applyData) => {
       };
 
       if (configs.method === 'POST') {
-        options.body = JSON.stringify({ text: taskText });
+        options.body = configs.body;
       }
 
       const response = await fetch(configs.url, options);
@@ -25,12 +25,12 @@ const useHttp = (configs, applyData) => {
 
       const data = await response.json();
 
-      applyData(data, taskText);
+      applyData(data);
     } catch (err) {
       setError(err.message || 'Something went wrong!');
     }
     setIsLoading(false);
-  }, [applyData, configs]);
+  }, []);
 
   return {
     isLoading,

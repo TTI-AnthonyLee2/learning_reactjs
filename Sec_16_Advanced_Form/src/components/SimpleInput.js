@@ -10,6 +10,10 @@ const SimpleInput = (props) => {
     setEnteredName(e.target.value);
   }
 
+  const nameInputBlurredHandler = e => {
+    setIsNameInputTouched(true);
+  }
+
   const formSubmittedHandler = e => {
     e.preventDefault();
 
@@ -38,6 +42,7 @@ const SimpleInput = (props) => {
           id='name' 
           value={enteredName}
           onChange={nameInputChangedHandler}
+          onBlur={nameInputBlurredHandler}
         />
         {!isNameInputValid && <p className='error-text'>Name must not be empty.</p>}
       </div>

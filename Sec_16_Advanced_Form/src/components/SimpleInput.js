@@ -6,11 +6,11 @@ const SimpleInput = (props) => {
   
   const isEnteredNameValid = enteredName.trim() !== '';
 
-  const inputChangedHandler = e => {
+  const nameInputChangedHandler = e => {
     setEnteredName(e.target.value);
   }
 
-  const submitHandler = e => {
+  const formSubmittedHandler = e => {
     e.preventDefault();
 
     setIsNameInputTouched(true);
@@ -30,14 +30,14 @@ const SimpleInput = (props) => {
   const formClasses = isNameInputValid ? 'form-control' : 'form-control invalid';
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={formSubmittedHandler}>
       <div className={formClasses}>
         <label htmlFor='name'>Your Name</label>
         <input 
           type='text' 
           id='name' 
           value={enteredName}
-          onChange={inputChangedHandler}
+          onChange={nameInputChangedHandler}
         />
         {!isNameInputValid && <p className='error-text'>Name must not be empty.</p>}
       </div>

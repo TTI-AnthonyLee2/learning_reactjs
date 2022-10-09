@@ -5,6 +5,7 @@ const SimpleInput = (props) => {
   const [isNameInputTouched, setIsNameInputTouched] = useState(false);
   
   const isEnteredNameValid = enteredName.trim() !== '';
+  const isNameInputValid = !isNameInputTouched || isEnteredNameValid;
 
   const nameInputChangedHandler = e => {
     setEnteredName(e.target.value);
@@ -25,11 +26,10 @@ const SimpleInput = (props) => {
 
     console.log(enteredName);
     setEnteredName('');
+    setIsNameInputTouched(false); // This may be not a good solution. 
   }
 
   console.log('re-executing.');
-
-  const isNameInputValid = !isNameInputTouched || isEnteredNameValid;
 
   const formClasses = isNameInputValid ? 'form-control' : 'form-control invalid';
 

@@ -1,43 +1,37 @@
-import { useState } from 'react';
+import useInput from '../hooks/useInput';
 
 const SimpleInput = (props) => {
-  const [enteredName, setEnteredName] = useState('');
-  const [isNameInputTouched, setIsNameInputTouched] = useState(false);
+  const validateEnteredName = input => {
+    return input.trim() !== '';
+  }
   
-  const isEnteredNameValid = enteredName.trim() !== '';
-  const isNameInputValid = !isNameInputTouched || isEnteredNameValid;
+  const {
+    enteredInput: enteredName,
+    isEnteredValueValid: isEnteredNameValid,
+    isInputValid: isNameInputValid,
+    inputClasses: nameInputClasses,
+    inputChangedHandler: nameInputChangedHandler,
+    inputBlurredHandler: nameInputBlurredHandler,
+    resetInput: resetNameInput,
+  } = useInput(validateEnteredName);
+
 
   const isFormValid = isEnteredNameValid;
 
-  const nameInputChangedHandler = e => {
-    setEnteredName(e.target.value);
-  }
-
-  const nameInputBlurredHandler = e => {
-    setIsNameInputTouched(true);
-  }
-
   const formSubmittedHandler = e => {
     e.preventDefault();
-
-    setIsNameInputTouched(true);
-
+    
     if (!isEnteredNameValid) {
       return;
     }
 
     console.log(enteredName);
-    setEnteredName('');
-    setIsNameInputTouched(false); // This may not be a good solution. 
+    resetNameInput();
   }
-
-  console.log('re-executing.');
-
-  const formClasses = isNameInputValid ? 'form-control' : 'form-control invalid';
 
   return (
     <form onSubmit={formSubmittedHandler}>
-      <div className={formClasses}>
+      <div className={nameInputClasses}>
         <label htmlFor='name'>Your Name</label>
         <input 
           type='text' 

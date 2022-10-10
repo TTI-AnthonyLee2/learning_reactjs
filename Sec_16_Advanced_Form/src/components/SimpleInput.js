@@ -4,6 +4,10 @@ const SimpleInput = (props) => {
   const validateEnteredName = input => {
     return input.trim() !== '';
   }
+
+  const validateEnteredEmail = input => {
+    return input.trim().includes('@');
+  }
   
   const {
     enteredInput: enteredName,
@@ -14,19 +18,30 @@ const SimpleInput = (props) => {
     inputBlurredHandler: nameInputBlurredHandler,
     resetInput: resetNameInput,
   } = useInput(validateEnteredName);
+    
+  const {
+    enteredInput: enteredEmail,
+    isEnteredValueValid: isEnteredEmailValid,
+    isInputValid: isEmailInputValid,
+    inputClasses: emailInputClasses,
+    inputChangedHandler: emailInputChangedHandler,
+    inputBlurredHandler: emailInputBlurredHandler,
+    resetInput: resetEmailInput,
+  } = useInput(validateEnteredEmail);
 
 
-  const isFormValid = isEnteredNameValid;
+  const isFormValid = isEnteredNameValid && isEnteredEmailValid;
 
   const formSubmittedHandler = e => {
     e.preventDefault();
     
-    if (!isEnteredNameValid) {
+    if (!isFormValid) {
       return;
     }
 
     console.log(enteredName);
     resetNameInput();
+    resetEmailInput();
   }
 
   return (
@@ -41,6 +56,17 @@ const SimpleInput = (props) => {
           onBlur={nameInputBlurredHandler}
         />
         {!isNameInputValid && <p className='error-text'>Name must not be empty.</p>}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input 
+          type='email' 
+          id='email' 
+          value={enteredEmail}
+          onChange={emailInputChangedHandler}
+          onBlur={emailInputBlurredHandler}
+        />
+        {!isEmailInputValid && <p className='error-text'>Email must include @.</p>}
       </div>
       <div className="form-actions">
         <button disabled={!isFormValid}>Submit</button>

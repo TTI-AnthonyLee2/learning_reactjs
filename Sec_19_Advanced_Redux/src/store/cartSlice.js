@@ -10,12 +10,11 @@ const cartSlice = createSlice({
   reducers: {
     addItem(state, action) {
       const { id, title, price } = action.payload;
-      const itemIndex = state.cartItemList.findIndex(item => item.id === id);
+      const existingItem = state.cartItemList.find(item => item.id === id);
       
-      if (itemIndex >= 0) {
-        const target = state.cartItemList[itemIndex];
-        target.quantity++;
-        target.total += price;
+      if (existingItem) {
+        existingItem.quantity++;
+        existingItem.total += price;
       } else {
         state.cartItemList.push({
           id,
@@ -28,21 +27,18 @@ const cartSlice = createSlice({
     },
     removeItem(state, action) {
       const id = action.payload;
-      const itemIndex = state.cartItemList.findIndex(item => item.id === id);
+      const existingItem = state.cartItemList.find(item => item.id === id);
 
-      if (itemIndex < 0) {
+      if (!existingItem) {
         console.log('something went wrong...');
         return;
       }
 
-      const target = state.cartItemList[itemIndex]; 
-      const numOfItem = target.quantity;
-
-      if (numOfItem === 1) {
+      if (existingItem.quantity === 1) {
         state.cartItemList = state.cartItemList.filter(item => item.id !== id);
       } else {
-        target.quantity--;
-        target.total -= target.price;
+        existingItem.quantity--;
+        existingItem.total -= existingItem.price;
       }
     },
     toggleCart(state) {

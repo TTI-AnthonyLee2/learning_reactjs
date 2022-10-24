@@ -13,7 +13,7 @@ const Cart = (props) => {
       { isCartEmpty && <p>Your cart is empty, please pick up some products!</p> }
       <ul>
         {cartItemList.map(item => (
-          <CartItem item={{...item}} />
+          <CartItem key={item.id} item={{...item}} />
         ))}
       </ul>
     </Card>

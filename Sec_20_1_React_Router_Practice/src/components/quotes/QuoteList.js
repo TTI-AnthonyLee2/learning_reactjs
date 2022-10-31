@@ -1,21 +1,29 @@
 import { Fragment } from 'react';
 
+import NoQuotesFound from './NoQuotesFound';
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
-const QuoteList = (props) => {
+const QuoteList = ({ quotes }) => {
+  const isNoQuote = quotes.length === 0;
+  
   return (
     <Fragment>
-      <ul className={classes.list}>
-        {props.quotes.map((quote) => (
-          <QuoteItem
-            key={quote.id}
-            id={quote.id}
-            author={quote.author}
-            text={quote.text}
-          />
-        ))}
-      </ul>
+      {
+        isNoQuote ? 
+        <NoQuotesFound />
+        : 
+        <ul className={classes.list}>
+          {quotes.map((quote) => (
+            <QuoteItem
+              key={quote.id}
+              id={quote.id}
+              author={quote.author}
+              text={quote.text}
+            />
+          ))}
+        </ul>
+      }
     </Fragment>
   );
 };

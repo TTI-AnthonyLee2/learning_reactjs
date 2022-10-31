@@ -7,11 +7,11 @@ function App() {
   return (
     <main className={classes.main}>
       <Switch>
-        <Route to='/quotes'>
+        <Route path='/quotes'>
           <AllQuotes />
         </Route>
-        <Route to='/quotes/:quoteId'></Route>
-        <Route to='/new-quote'></Route>
+        <Route path='/quotes/:quoteId'></Route>
+        <Route path='/new-quote'></Route>
       </Switch>
     </main>
   );

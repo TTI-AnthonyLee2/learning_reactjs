@@ -7,12 +7,12 @@ const initialState = {
 const quotesSlice = createSlice({
   initialState,
   reducers: {
-    addQuote: () => {
-
+    addQuote: (state, action) => {
+      state.quotesList.push(action.payload);
     },
   },
   name: 'quotes'
 });
 
-export const quotesAction = quotesSlice.actions;
+export const quotesActions = quotesSlice.actions;
 export default quotesSlice.reducer;

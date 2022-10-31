@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
@@ -16,7 +17,11 @@ const QuoteForm = (props) => {
 
     // optional: Could validate here
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onAddQuote({
+      id: uuidv4(),
+      author: enteredAuthor,
+      text: enteredText
+    });
   }
 
   return (

@@ -3,12 +3,17 @@ import { Route, useParams } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
+import NotFound from "./NotFound";
 
 const QuoteDetail = () => {
   const { quoteId } = useParams();
   const quotesList = useSelector(state => state.quotes.quotesList);
 
   const quote = quotesList.find(quote => quote.id === quoteId);
+
+  if (!quote) {
+    return <NotFound />;
+  }
 
   return (
     <>

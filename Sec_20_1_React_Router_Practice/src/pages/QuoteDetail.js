@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route, useParams } from "react-router-dom";
+import { Route, Link, useParams } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
@@ -18,6 +18,9 @@ const QuoteDetail = () => {
   return (
     <>
       <HighlightedQuote {...quote} />
+      <div className="centered">
+        <Link to={`/quotes/${quoteId}/comments`} className=" btn--flat">Show Comments</Link>
+      </div>
       <Route path='/quotes/:quoteId/comments'>
         <Comments />
       </Route>

@@ -15,12 +15,7 @@ const QuoteList = ({ quotes }) => {
         : 
         <ul className={classes.list}>
           {quotes.map((quote) => (
-            <QuoteItem
-              key={quote.id}
-              id={quote.id}
-              author={quote.author}
-              text={quote.text}
-            />
+            <QuoteItem key={quote.id} {...quote} />
           ))}
         </ul>
       }

@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Route, useParams } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
@@ -5,13 +6,14 @@ import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
 const QuoteDetail = () => {
   const { quoteId } = useParams();
+  const quotesList = useSelector(state => state.quotes.quotesList);
+
+  const quote = quotesList.find(quote => quote.id === quoteId);
 
   return (
     <>
-      <h1>Quote Detail</h1>
-      <p>{quoteId}</p>
+      <HighlightedQuote {...quote} />
       <Route path='/quotes/:quoteId/comments'>
-        <HighlightedQuote />
         <Comments />
       </Route>
     </>

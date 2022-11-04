@@ -12,8 +12,6 @@ const SORT_TYPE = {
 
 const sortQuotes = (quotes, isAscending) => {
   return quotes.sort((a, b) => {
-    console.log(a);
-    console.log(b);
     if (isAscending) {
       return a.id > b.id ? 1 : -1;
     } else {
@@ -24,7 +22,7 @@ const sortQuotes = (quotes, isAscending) => {
 
 const QuoteList = ({ quotes }) => {
   const history = useHistory();
-  const { search } = useLocation();
+  const { pathname, search } = useLocation();
   
   const isNoQuote = quotes.length === 0;
   
@@ -36,7 +34,7 @@ const QuoteList = ({ quotes }) => {
   const sortedQuotes = sortQuotes([...quotes], isSortingAscending);
   
   const changeSortingHandler = () => {
-    history.push(`/quotes?sort=${isSortingAscending ? SORT_TYPE.descending : SORT_TYPE.ascending}`);
+    history.push(`${pathname}?sort=${isSortingAscending ? SORT_TYPE.descending : SORT_TYPE.ascending}`);
   };
 
   return (

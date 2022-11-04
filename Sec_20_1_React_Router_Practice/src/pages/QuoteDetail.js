@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route, Link, useParams } from "react-router-dom";
+import { Route, Link, useParams, useRouteMatch } from "react-router-dom";
 
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
@@ -7,6 +7,7 @@ import NotFound from "./NotFound";
 
 const QuoteDetail = () => {
   const { quoteId } = useParams();
+  const { path, url } = useRouteMatch();
   const quotesList = useSelector(state => state.quotes.quotesList);
 
   const quote = quotesList.find(quote => quote.id === quoteId);
@@ -18,12 +19,12 @@ const QuoteDetail = () => {
   return (
     <>
       <HighlightedQuote {...quote} />
-      <Route path='/quotes/:quoteId' exact>
+      <Route path={path} exact>
         <div className='centered'>
-          <Link to={`/quotes/${quoteId}/comments`} className='btn--flat'>Show Comments</Link>
+          <Link to={`${url}/comments`} className='btn--flat'>Show Comments</Link>
         </div>
       </Route>
-      <Route path='/quotes/:quoteId/comments'>
+      <Route path={`${path}/comments`}>
         <Comments />
       </Route>
     </>

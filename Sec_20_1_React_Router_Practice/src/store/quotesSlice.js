@@ -7,6 +7,9 @@ const initialState = {
 const quotesSlice = createSlice({
   initialState,
   reducers: {
+    replaceAllQuotes: (state, action) => {
+      state.quotesList = action.payload || [];
+    },
     addQuote: (state, action) => {
       state.quotesList.push(action.payload);
     },

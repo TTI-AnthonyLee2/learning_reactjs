@@ -25,7 +25,7 @@ const QuoteList = ({ quotes }) => {
   const { pathname, search } = useLocation();
   
   const isNoQuote = quotes.length === 0;
-  
+
   const queryParams = new URLSearchParams(search);
   const isSortingAscending = queryParams.get('sort') === SORT_TYPE.ascending;
   

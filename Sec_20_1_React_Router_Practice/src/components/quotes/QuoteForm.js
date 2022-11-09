@@ -1,6 +1,5 @@
 import { Prompt } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
@@ -20,7 +19,6 @@ const QuoteForm = (props) => {
     // optional: Could validate here
 
     props.onAddQuote({
-      id: uuidv4(),
       author: enteredAuthor,
       text: enteredText
     });

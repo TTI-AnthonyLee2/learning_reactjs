@@ -1,21 +1,28 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import useHttp from '../hooks/use-http';
+import { addQuote } from '../lib/api';
+
 import QuoteForm from "../components/quotes/QuoteForm";
-import { quotesActions } from '../store/quotesSlice';
 
 const NewQuote = () => {
-  const dispatch = useDispatch();
-  const histroy = useHistory();
+  const { sendRequest, status, error } = useHttp(addQuote);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (status === 'completed' && !error) {
+      history.push('/quotes'); 
+    }
+  }, [status, error, history]);
 
   const addQuoteHandler = (quote) => {
-    dispatch(quotesActions.addQuote(quote));
-    histroy.push('/quotes'); 
+    sendRequest(quote);
   }
 
   return (
     <>
-      <QuoteForm onAddQuote={addQuoteHandler} />
+      <QuoteForm isLoading={status === 'pending'} onAddQuote={addQuoteHandler} />
     </>
   );
 };

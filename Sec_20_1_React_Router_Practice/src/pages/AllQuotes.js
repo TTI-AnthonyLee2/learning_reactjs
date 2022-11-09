@@ -21,8 +21,8 @@ const AllQuotes = () => {
     );
   }
 
-  if (status === 'completed' && error) {
-    return <p>{error}</p>
+  if (error) {
+    return <p className="centered">{error}</p>
   }
 
   return (

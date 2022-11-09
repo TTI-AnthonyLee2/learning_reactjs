@@ -43,7 +43,7 @@ const QuoteDetail = () => {
         </div>
       </Route>
       <Route path={`${path}/comments`}>
-        <Comments />
+        <Comments quoteId={quoteId} />
       </Route>
     </>
   );
